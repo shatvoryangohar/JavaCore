@@ -49,13 +49,11 @@ int,if,for փոփոխականների մասին է
             System.out.println("y=" + y);
             y = y - 2;
         }
-int z;
-    for(z=0;z<10;z++){
+        int z;
+        for (z = 0; z < 10; z++) {
 
-        System.out.println("z=" + z);
-    }
-
-
+            System.out.println("z=" + z);
+        }
 
 
     }
