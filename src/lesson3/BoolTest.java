@@ -32,7 +32,14 @@ public class BoolTest {
         }
 
 
+float  a=3.0f, c=4.0f;
+        System.out.println();
+
+
     }
 
 
-}
+    }
+
+
+
