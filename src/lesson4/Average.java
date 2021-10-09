@@ -13,8 +13,8 @@ public class Average {
 
         }
 
-    int[]numbers={2,8,6,5,7};
-    numbers[0]=3;
+        int[] numbers = {2, 8, 6, 5, 7};
+        numbers[0] = 3;
 
         System.out.println(numbers[0]);
     }
