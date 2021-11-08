@@ -6,7 +6,7 @@ public class ArrayUtil {
 
         int[] array = {3, 6, 9, 15, 34, 56, 60, 95, 115, 136};
 
-        for (int i = 0; i < array.length; i++) {
+        for (int i =0;i<array.length; i++) {
 
             System.out.print(array[i] + " ");
         }
@@ -44,17 +44,17 @@ public class ArrayUtil {
 
         int max = array[0];
         for (int i = 0; i < array.length; i++) {
-            if (max > array[i]) {
+            if (max < array[i]) {
                 max = array[i];
             }
 
         }
         System.out.println(max);
 
-        int min = array[9];
+        int min = array[0];
 
         for (int i = 0; i < array.length; i++) {
-            if (min < array[i]) {
+            if (min > array[i]) {
                 min = array[i];
             }
         }

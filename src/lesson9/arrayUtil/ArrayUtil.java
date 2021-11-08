@@ -11,6 +11,6 @@ public class ArrayUtil {
 
         }
 
-return(max);
+        return (max);
     }
 }

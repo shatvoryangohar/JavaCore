@@ -9,14 +9,6 @@ public class Student {
     private String lessonName;
 
 
-//    Student(String name, String surName, String phoneNumber, int age, String lessonName) {
-//    this.name=name;
-//    this.surName=surName;
-//    this.phoneNumber=phoneNumber;
-//    this.age=age;
-//    this.lessonName=lessonName;
-
-
     public Student(String name, String surName, String phoneNumber, int age, String lessonName) {
         this.name = name;
         this.surName = surName;

@@ -6,23 +6,21 @@ public class PracticeHomeworkTest {
 
         PracticeHomework practiceHomework = new PracticeHomework();
 
-        long seconds = practiceHomework.convert(2);
-        System.out.println(seconds);
+        System.out.println(practiceHomework.convert(2));
 
-        int days = practiceHomework.calcAge(3);
-        System.out.println(days);
-
-        int numbers = practiceHomework.nextNumber(52);
-        System.out.println(numbers);
+        System.out.println(practiceHomework.calcAge(3));
 
 
-        boolean bul = practiceHomework.isSameNum(35, 54);
-        System.out.println(bul);
+        System.out.println(practiceHomework.nextNumber(52));
 
 
-        boolean a = practiceHomework.lessThanOrEqualToZero(65);
-        System.out.println(a);
+        System.out.println(practiceHomework.isSameNum(35, 54));
 
+
+        System.out.println(practiceHomework.lessThanOrEqualToZero(65));
+
+
+        System.out.println(practiceHomework.reversBool(true));
 
         int[] array = {54, 84, 12, 63, 4, 52, 74};
         int[] num = {42, 62, 34, 74, 10, 11};

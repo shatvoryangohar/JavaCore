@@ -12,11 +12,10 @@ public class DynamicArray {
     //ստուգել,եթե մասիվի մեջ տեղ չկա -> կանչել extend() և ավելացնենք։
 
     public void add(int value) {
-        if (size == array.length) {
+        if (array.length == size) {
             extend();
         }
-        array[size] = value;
-        size++;
+        array[size++] = value;
     }
 //1․ստեղծել հին մասիվից 10 էլեմենտ ավելի մեծ մասիվ
 //2․քցել հին մասիվի էլեմենտները նորի մեջ
@@ -24,12 +23,12 @@ public class DynamicArray {
 
 
     private void extend() {
-        int[] arrayUtil = new int[array.length + 10];
+        int[] tmp = new int[10];
         for (int i = 0; i < array.length; i++) {
-            arrayUtil[i] = array[i];
-
+            tmp[i] = array[i];
         }
-        array = arrayUtil;
+
+        array = tmp;
     }
 
 
@@ -37,20 +36,35 @@ public class DynamicArray {
     //հակառակ դեպքում վերադարձնել -1;
 
     public int getByIndex(int index) {
-        if (index > array.length) {
+
+        if (index < 0 || index > array.length) {
+            System.err.println("invalid index");
             return -1;
-        } else {
-            return array[index];
         }
+        return array[index];
+    }
+
+    public void delete(int index) {
+
+        for (int i = index+1; i < size; i++) {
+
+            array[i-1] = array[i];
+
+        }
+        size--;
+
     }
 
 
-//   տպել մասիվի ավելացված էլեմենտները։
+    //   տպել մասիվի ավելացված էլեմենտները։
     public void print() {
-        for (int i = 0; i < array.length; i++) {
-           if(array[i]!=0)
-            System.out.println(array[i]);
+
+        for (int i = 0; i < size; i++) {
+            System.out.print(array[i]+" ");
         }
     }
+
 
 }
+
+

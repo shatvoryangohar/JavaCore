@@ -2,8 +2,8 @@ package lesson10;
 
 public class Stack1 {
 
-    int stck[] = new int[10];
-    int tos;
+private    int stck[] = new int[10];
+private    int tos;
 
 
     Stack1() {

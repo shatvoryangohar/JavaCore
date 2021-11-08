@@ -19,21 +19,23 @@ public class ArrayExample {
         name[3] = 'o';
         name[4] = 's';
 
-       //տպել մասիվի բոլոր էլեմենտները
+        //տպել մասիվի բոլոր էլեմենտները
 
-        for (int i = 0; i <array.length ; i++) {
-            System.out.print(array[i]+ " ");
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
         }
 
-      //տպել,թե քանի հատ օ կա name մասիվի մեջ
-int count=0;
-        for (int i = 0; i <name.length ; i++) {
-        if(name[i]=='o'){
-            count++;
-        }
+        //տպել,թե քանի հատ օ կա name մասիվի մեջ
+        int count = 0;
+        for (int i = 0; i < name.length; i++) {
+            if (name[i] == 'o') {
+                count++;
+            }
 
         }
         System.out.println("count=" + count);
+
+
     }
 
 
