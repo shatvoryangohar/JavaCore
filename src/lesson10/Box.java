@@ -26,7 +26,8 @@ public class Box {
         depth = -1;
     }
 
-    Box(double len) {
+    Box(double len)
+    {
         width = height = depth = len;
     }
 

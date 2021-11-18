@@ -2,11 +2,12 @@ package lesson10;
 
 public class Stack1 {
 
-private    int stck[] = new int[10];
-private    int tos;
+    private int stck[] = new int[10];
+    private int tos;
 
 
     Stack1() {
+
         tos = -1;
     }
 
@@ -19,21 +20,17 @@ private    int tos;
             stck[++tos] = item;
         }
     }
-int pop(){
-     if (tos <0){
-         System.out.println("Стек загружен");
-   return 0;
-     }else{
-         return stck[tos--];
-     }
 
-
+    int pop() {
+        if (tos < 0) {
+            System.out.println("Стек загружен");
+            return 0;
+        } else {
+            return stck[tos--];
         }
 
 
-
-
-
+    }
 
 
 }

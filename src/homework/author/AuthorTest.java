@@ -11,7 +11,7 @@ public class AuthorTest {
         System.out.println("please,input a");
         int a = scanner.nextInt();
         for (int i = 0; i < a; i++) {
-            Author author = new Author("Vahan", "Teryan", "vahanteryan@gmail.com", 34, "arakan");
+            Author author = new Author("Վահան", "Տերյան", "vahanteryan@gmail.com", 34, "արական");
             authorStorage.add(author);
         }
         authorStorage.print();

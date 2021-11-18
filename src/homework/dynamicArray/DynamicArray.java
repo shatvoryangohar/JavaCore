@@ -17,7 +17,43 @@ public class DynamicArray {
         }
         array[size++] = value;
     }
-//1․ստեղծել հին մասիվից 10 էլեմենտ ավելի մեծ մասիվ
+
+    public void add(int[] numbers) {
+        for (int number : numbers) {
+            add(number);
+
+        }
+    }
+
+    public void add(int value, int index) {
+        if (index < 0 || index > size) {
+            System.err.println("invalid index");
+
+        } else {
+            if (array.length == size) {
+                extend();
+            }
+            for (int i = size - 1; i >= index; i--) {
+                array[i + 1] = array[i];
+            }
+            array[index] = value;
+            size++;
+        }
+
+    }
+
+
+    public void set(int value, int index) {
+
+        if (index < 0 || index > array.length) {
+            System.err.println("invalid index");
+
+        } else {
+            array[index] = value;
+        }
+    }
+
+    //1․ստեղծել հին մասիվից 10 էլեմենտ ավելի մեծ մասիվ
 //2․քցել հին մասիվի էլեմենտները նորի մեջ
 //3․հին մասիվի հղումը կապենք նոր մասիվի հղման հետ
 
@@ -46,9 +82,9 @@ public class DynamicArray {
 
     public void delete(int index) {
 
-        for (int i = index+1; i < size; i++) {
+        for (int i = index + 1; i < size; i++) {
 
-            array[i-1] = array[i];
+            array[i - 1] = array[i];
 
         }
         size--;
@@ -60,11 +96,21 @@ public class DynamicArray {
     public void print() {
 
         for (int i = 0; i < size; i++) {
-            System.out.print(array[i]+" ");
+            System.out.print(array[i] + " ");
         }
+    }
+
+    public boolean isExist(int value) {
+        for (int i = 0; i < size; i++) {
+            if (array[i] == value)
+                return true;
+        }
+        return false;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
     }
 
 
 }
-
-
