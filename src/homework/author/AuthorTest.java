@@ -81,7 +81,9 @@ public class AuthorTest {
         System.out.println("Please input " + SEARCH_AUTHOR + " for SEARCH_AUTHOR");
         System.out.println("Please input " + SEARCH_AUTHOR_BY_AGE + " for SEARCH_AUTHOR_BY_AGE");
         System.out.println("Please input " + PRINT_AUTHORS + " for PRINT_AUTHORS");
-
+        System.out.println("Please input " + ADD_BOOK + " for ADD_BOOK");
+        System.out.println("Please input " + PRINT_BOOK + " for PRINT_BOOKS");
+        System.out.println("Please input " + SEARCH_BOOKS_BY_TITLE + " for SEARCH_BOOKS_BY_TITLE");
     }
 
     private static void searchAuthorByAge() {
