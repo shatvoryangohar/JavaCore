@@ -1,5 +1,7 @@
 package homework.author;
 
+import static java.lang.System.arraycopy;
+
 public class AuthorStorage {
 
     private Author[] array = new Author[10];
@@ -10,15 +12,27 @@ public class AuthorStorage {
         if (array.length == size) {
             extend();
         }
+//        boolean isFound = false;
+//        for (int i = 0; i < size; i++) {
+//            if (array[i].getEmail().equals(author.getEmail())) {
+//                isFound = true;
+//                break;
+//            }
+//        }
+//       if(getByEmail(author.getEmail())!=null){
+//           System.out.println("Invalid email.Author with this email already exist");
+//       }else {
+
         array[size++] = author;
+//       }
     }
 
     private void extend() {
-        Author[] tmp = new Author[10];
-        for (int i = 0; i < array.length; i++) {
-            tmp[i] = array[i];
-        }
-
+        Author[] tmp = new Author[array.length + 10];
+        //       for (int i = 0; i < size; i++) {
+//            tmp[i] = array[i];
+//        }
+        System.arraycopy(array, 0, tmp, 0, array.length);
         array = tmp;
     }
 
@@ -38,4 +52,40 @@ public class AuthorStorage {
         }
     }
 
+    public void searchAuthor(String keyword) {
+        for (int i = 0; i < size; i++) {
+            if (array[i].getName().contains(keyword) || array[i].getSurname().contains(keyword)) {
+                System.out.println(array[i]);
+            }
+        }
+    }
+
+    public void searchAuthorByAge(int minAge, int maxAge) {
+        for (int i = 0; i < size; i++) {
+
+            if (array[i].getAge() >= minAge && array[i].getAge() <= maxAge) {
+                System.out.println(array[i]);
+            }
+        }
+    }
+
+    public Author getByEmail(String email) {
+        for (int i = 0; i < size; i++) {
+            if (array[i].getEmail().equals(email)) {
+                return array[i];
+            }
+        }
+        return null;
+    }
+
+    public void changeAuthor(String name, String surname, String email) {
+        for (int i = 0; i < size; i++) {
+            if (array[i].getEmail().equals(email)) {
+                array[i].setName(name);
+                array[i].setSurname(surname);
+            }
+
+        }
+
+    }
 }
