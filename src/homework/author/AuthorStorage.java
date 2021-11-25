@@ -45,6 +45,19 @@ public class AuthorStorage {
         return array[index];
     }
 
+
+    public void delete(int index) {
+
+        for (int i = index + 1; i < size; i++) {
+
+            array[i - 1] = array[i];
+
+        }
+        size--;
+
+    }
+
+
     public void print() {
 
         for (int i = 0; i < size; i++) {
@@ -71,21 +84,30 @@ public class AuthorStorage {
 
     public Author getByEmail(String email) {
         for (int i = 0; i < size; i++) {
-            if (array[i].getEmail().equals(email)) {
+            if (array[i].getEmail().contains(email)) {
                 return array[i];
             }
         }
         return null;
     }
 
-    public void changeAuthor(String name, String surname, String email) {
+    public void deleteAuthor(String email) {
         for (int i = 0; i < size; i++) {
-            if (array[i].getEmail().equals(email)) {
-                array[i].setName(name);
-                array[i].setSurname(surname);
+            if (array[i].getEmail().contains(email)) {
+                delete(i);
             }
-
         }
 
     }
+//
+//    public void changeAuthor(String name, String surname, String email) {
+//        for (int i = 0; i < size; i++) {
+//            if (array[i].getEmail().equals(email)) {
+//                array[i].setName(name);
+//                array[i].setSurname(surname);
+//            }
+
+    //      }
+
+//    }
 }

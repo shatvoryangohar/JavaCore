@@ -1,5 +1,7 @@
 package homework.author;
 
+import java.util.List;
+
 public class BookStorage {
 
     private Book[] books = new Book[10];
@@ -28,6 +30,19 @@ public class BookStorage {
 
     }
 
+
+    public void delete(int index) {
+
+        for (int i = index + 1; i < size; i++) {
+
+            books[i - 1] = books[i];
+
+        }
+        size--;
+
+    }
+
+
     public Book searchBookByTitle(String keyword) {
         for (int i = 0; i < size; i++) {
             if (books[i].getTitle().contains(keyword)) {
@@ -43,8 +58,8 @@ public class BookStorage {
                 System.out.println(books[i]);
             }
         }
-
     }
+
 
     public void countBookByAuthor(String email) {
         int count = 0;
@@ -58,8 +73,23 @@ public class BookStorage {
     }
 
 
+    public void deleteByAuthor(String email) {
+        for (int i = 0; i < size; i++) {
+            if (books[i].getAuthor().getEmail().contains(email)) {
+                delete(i);
+            }
+        }
 
 
+    }
+
+    public void deleteBook(String title) {
+        for (int i = 0; i < size; i++) {
+            if (books[i].getTitle().contains(title)) {
+                delete(i);
+            }
+        }
+    }
 }
 
 

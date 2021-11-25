@@ -19,13 +19,16 @@ public class AuthorBookTest {
     private static final String COUNT_BOOKS_BY_AUTHOR = "9";
     private static final String CHANGE_AUTHOR = "10";
     private static final String CHANGE_BOOK_AUTHOR = "11";
+    private static final String DELETE_AUTHOR = "12";
+    private static final String DELETE_BY_AUTHOR = "13";
+    private static final String DELETE_BOOK = "14";
 
     public static void main(String[] args) {
-        Author author = new Author("Վահան", "Տերյան", "teryan@gmail.com", 34, "male");
+        Author author = new Author("Vahan", "Teryan", "teryan@gmail.com", 34, "male");
         authorStorage.add(author);
-        Author author1 = new Author("Հովհաննես", "Թումանյան", "tumanyan1@gmail.com", 55, "male");
+        Author author1 = new Author("Hovhannes", "Tumanyan", "tumanyan1@gmail.com", 55, "male");
         authorStorage.add(author1);
-        Author author2 = new Author("Ալեքսանդր", "Շիրվանզադե", "shirvanzade@gmail.com", 58, "male");
+        Author author2 = new Author("Aleqsandr", "Shirvanzade", "shirvanzade@gmail.com", 58, "male");
         authorStorage.add(author2);
         bookStorage.add(new Book("աշնան մեղեդի", "ոտանավոր", 25, 1, author));
         bookStorage.add(new Book("va", "ոտանավոր", 25, 1, author));
@@ -72,11 +75,38 @@ public class AuthorBookTest {
                 case CHANGE_BOOK_AUTHOR:
                     changeBookAuthor();
                     break;
+                case DELETE_AUTHOR:
+                    deleteAuthor();
+                    break;
+                case DELETE_BY_AUTHOR:
+                    deleteByAuthor();
+                    break;
+                case DELETE_BOOK:
+                    deleteBook();
+                    break;
                 default:
                     System.out.println("Invalid command");
             }
 
         }
+    }
+
+    private static void deleteBook() {
+        System.out.println("Please input book title");
+        String title = scanner.nextLine();
+        bookStorage.deleteBook(title);
+    }
+
+    private static void deleteByAuthor() {
+        System.out.println("Please input author email");
+        String email = scanner.nextLine();
+        bookStorage.deleteByAuthor(email);
+    }
+
+    private static void deleteAuthor() {
+        System.out.println("Please input author email");
+        String email = scanner.nextLine();
+        authorStorage.deleteAuthor(email);
     }
 
     private static void changeBookAuthor() {
@@ -85,18 +115,24 @@ public class AuthorBookTest {
         System.out.println("Please input new author email ");
         String email = scanner.nextLine();
         Author author = authorStorage.getByEmail(email);
-        bookStorage.searchBookByTitle(title).setAuthor(author);
+        Book book = bookStorage.searchBookByTitle(title);
+        if (book != null && book.getAuthor().equals(author)) {
+            bookStorage.searchBookByTitle(title).setAuthor(author);
+        } else {
+            System.out.println("Invalid author");
+        }
     }
 
-    private static void  changeAuthor() {
+    private static void changeAuthor() {
         System.out.println("Please input email");
         String email = scanner.nextLine();
         System.out.println("please input name");
         String name = scanner.nextLine();
         System.out.println("please input surname");
         String surname = scanner.nextLine();
-        authorStorage.changeAuthor(name, surname, email);
-
+        Author author = authorStorage.getByEmail(email);
+        author.setName(name);
+        author.setSurname(surname);
     }
 
     private static void countBooksByAuthors() {
@@ -153,14 +189,17 @@ public class AuthorBookTest {
         System.out.println("Please input " + ADD_AUTHOR + " for ADD_AUTHOR");
         System.out.println("Please input " + ADD_BOOK + " for ADD_BOOK");
         System.out.println("Please input " + SEARCH_AUTHOR + " for SEARCH_AUTHOR");
+        System.out.println("Please input " + SEARCH_BOOKS_BY_TITLE + " for SEARCH_BOOKS_BY_TITLE");
         System.out.println("Please input " + SEARCH_AUTHOR_BY_AGE + " for SEARCH_AUTHOR_BY_AGE");
         System.out.println("Please input " + PRINT_AUTHORS + " for PRINT_AUTHORS");
         System.out.println("Please input " + PRINT_BOOK + " for PRINT_BOOK");
-        System.out.println("Please input " + SEARCH_BOOKS_BY_TITLE + " for SEARCH_BOOKS_BY_TITLE");
         System.out.println("Please input " + SEARCH_BOOKS_BY_AUTHOR + " for SEARCH_BOOKS_BY_AUTHOR");
-        System.out.println("Please input " + COUNT_BOOKS_BY_AUTHOR + "for COUNT_BOOKS_BY_AUTHOR");
-        System.out.println("Please input" + CHANGE_AUTHOR + "for CHANGE_AUTHOR");
-        System.out.println("please input" + CHANGE_BOOK_AUTHOR + "for CHANGE_BOOK_AUTHOR");
+        System.out.println("Please input " + COUNT_BOOKS_BY_AUTHOR + " for COUNT_BOOKS_BY_AUTHOR");
+        System.out.println("Please input " + CHANGE_AUTHOR + " for CHANGE_AUTHOR");
+        System.out.println("please input " + CHANGE_BOOK_AUTHOR + " for CHANGE_BOOK_AUTHOR");
+        System.out.println("Please input " + DELETE_AUTHOR + " for DELETE_AUTHOR");
+        System.out.println("Please input " + DELETE_BY_AUTHOR + " for DELETE_BY_AUTHOR");
+        System.out.println("Please input " + DELETE_BOOK + " for DELETE BOOK");
     }
 
     private static void searchAuthorByAge() {
@@ -199,4 +238,6 @@ public class AuthorBookTest {
             System.out.println("Thank you! Authors was added");
         }
     }
+
+
 }
