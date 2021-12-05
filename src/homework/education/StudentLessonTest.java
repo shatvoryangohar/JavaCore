@@ -1,27 +1,35 @@
 package homework.education;
 
+import homework.education.model.Lesson;
+import homework.education.model.Student;
+import homework.education.storage.LessonStorage;
+import homework.education.storage.StudentStorage;
+
+import java.text.ParseException;
+import java.util.Date;
 import java.util.Scanner;
 
-public class StudentLessonTest {
+public class StudentLessonTest implements StudentLessonCommands {
     static Scanner scanner = new Scanner(System.in);
     static LessonStorage lessonStorage = new LessonStorage();
     static StudentStorage studentStorage = new StudentStorage();
-    private static final String EXIT = "0";
-    private static final String ADD_LESSON = "1";
-    private static final String ADD_STUDENT = "2";
-    private static final String PRINT_STUDENTS = "3";
-    private static final String PRINT_LESSONS = "4";
-    private static final String PRINT_STUDENTS_BY_LESSON = "5";
-    private static final String DELETE_LESSONS_BY_NAME = "6";
-    private static final String DELETE_STUDENT_BY_EMAIL = "7";
 
-    public static void main(String[] args) {
-        Lesson lesson = new Lesson("qimia", 60, "poxos", 120);
-        lessonStorage.add(new Lesson("qimia", 60, "poxos", 120));
-        studentStorage.add(new Student("poxos", "poxosyan", 16, "poxos@gmail.com", "093454645", lesson));
+
+    public static void main(String[] args) throws ParseException {
+
+        Lesson qimia = new Lesson("qimia", 45, "tjycjtc", 45);
+        Lesson matem = new Lesson("matem", 45, "tjycjtc", 45);
+        lessonStorage.add(qimia);
+        lessonStorage.add(matem);
+
+        Lesson lesson1 = new Lesson("ddddd", 78, "jjjj", 65);
+        Lesson[] lessons = new Lesson[1];
+        lessonStorage.add(lesson1);
+        lessons[0] = lesson1;
+        studentStorage.add(new Student("Poxos", "Poxosyan", 16, "poxos@gmail.com", "093154654", lessons, DateUtil.stringToDate("24/08/2012")));
         boolean isFound = true;
         while (isFound) {
-            printCommands();
+            StudentLessonCommands.printCommands();
             String command = scanner.nextLine();
 
             switch (command) {
@@ -62,8 +70,8 @@ public class StudentLessonTest {
         String email = scanner.nextLine();
         Student student = studentStorage.getByEmail(email);
         if (student != null) {
-        studentStorage.deleteStudentByEmail(student);
-        }else{
+            studentStorage.deleteStudentByEmail(student);
+        } else {
             System.out.println("Students does not exists");
         }
     }
@@ -92,27 +100,29 @@ public class StudentLessonTest {
         }
     }
 
-    private static void addStudent() {
-        System.out.println("please choose lesson's name ");
-        lessonStorage.print();
-        String lessonName = scanner.nextLine();
-        Lesson lesson = lessonStorage.getByName(lessonName);
-        if (lesson != null) {
-            System.out.println("please input student's name");
-            String name = scanner.nextLine();
-            System.out.println("please input student's surname");
-            String surname = scanner.nextLine();
-            System.out.println("please input student's age");
+    private static void addStudent() throws ParseException {
+
+        System.out.println("please input student's name,surname,age,email,phone,lesson name,dateOfBirth");
+        String studentData = scanner.nextLine();
+        String[] studentDataStr = studentData.split(",");
+        if (studentDataStr.length == 7) {
             int age = Integer.parseInt(scanner.nextLine());
-            System.out.println("please input student's email");
-            String email = scanner.nextLine();
-            System.out.println("please input student's phone");
-            String phone = scanner.nextLine();
-            Student student = new Student(name, surname, age, email, phone, lesson);
-            if (studentStorage.getByEmail(student.getEmail()) != null) {
-                System.out.println("Invalid email!Student with email already exists");
-            } else {
-                addStudent();
+            String lessonNames = scanner.nextLine();
+            Date data = DateUtil.stringToDate(studentDataStr[6]);
+            String[] namesSplitted = lessonNames.split(",");
+            Lesson[] lessons = new Lesson[namesSplitted.length];
+            for (int i = 0; i < namesSplitted.length; i++) {
+                Lesson lesson = lessonStorage.getByName(namesSplitted[i]);
+                if (lesson != null) {
+                    lessons[i] = lesson;
+
+                }
+                Student student = new Student(studentDataStr[0], studentDataStr[1], age, studentDataStr[3], studentDataStr[4], lessons, data);
+                if (studentStorage.getByEmail(student.getEmail()) != null) {
+                    System.out.println("Invalid email!Student with email already exists");
+
+                }
+                studentStorage.add(student);
             }
         }
     }
@@ -136,14 +146,5 @@ public class StudentLessonTest {
 
     }
 
-    private static void printCommands() {
-        System.out.println("Please input " + EXIT + "for EXIT");
-        System.out.println("Please input " + ADD_LESSON + " for ADD_LESSON");
-        System.out.println("Please input " + ADD_STUDENT + " for ADD_STUDENT");
-        System.out.println("Please input " + PRINT_STUDENTS + " for PRINT_STUDENTS");
-        System.out.println("Please input " + PRINT_LESSONS + " for PRINT_LESSONS");
-        System.out.println("Please input " + PRINT_STUDENTS_BY_LESSON + " for PRINT_STUDENTS_BY_LESSON");
-        System.out.println("Please input " + DELETE_LESSONS_BY_NAME + " for DELETE_LESSONS_BY_NAME");
-        System.out.println("Please input " + DELETE_STUDENT_BY_EMAIL + " for DELETE_STUDENTS_BY_EMAIL");
-    }
+
 }

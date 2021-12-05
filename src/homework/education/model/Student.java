@@ -1,4 +1,9 @@
-package homework.education;
+package homework.education.model;
+
+import homework.education.DateUtil;
+
+import java.util.Arrays;
+import java.util.Date;
 
 public class Student {
 
@@ -7,20 +12,21 @@ public class Student {
     private int age;
     private String email;
     private String phone;
-    private Lesson lesson;
+    private Lesson[] lessons;
+    private Date dateOfBirth;
 
-    Student() {
+    public Student() {
 
     }
 
-    Student(String name, String surname, int age, String email, String phone, Lesson lesson) {
+    public Student(String name, String surname, int age, String email, String phone, Lesson[] lessons, Date dateOfBirth) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.email = email;
         this.phone = phone;
-        this.lesson = lesson;
-
+        this.lessons = lessons;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getName() {
@@ -63,12 +69,20 @@ public class Student {
         this.phone = phone;
     }
 
-    public Lesson getLesson() {
-        return lesson;
+    public Lesson[] getLessons() {
+        return lessons;
     }
 
-    public void setLesson(Lesson lesson) {
-        this.lesson = lesson;
+    public void setLessons(Lesson[] lessons) {
+        this.lessons = lessons;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     @Override
@@ -83,7 +97,9 @@ public class Student {
         if (surname != null ? !surname.equals(student.surname) : student.surname != null) return false;
         if (email != null ? !email.equals(student.email) : student.email != null) return false;
         if (phone != null ? !phone.equals(student.phone) : student.phone != null) return false;
-        return lesson != null ? lesson.equals(student.lesson) : student.lesson == null;
+        // Probably incorrect - comparing Object[] arrays with Arrays.equals
+        if (!Arrays.equals(lessons, student.lessons)) return false;
+        return dateOfBirth != null ? dateOfBirth.equals(student.dateOfBirth) : student.dateOfBirth == null;
     }
 
     @Override
@@ -93,7 +109,8 @@ public class Student {
         result = 31 * result + age;
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        result = 31 * result + (lesson != null ? lesson.hashCode() : 0);
+        result = 31 * result + Arrays.hashCode(lessons);
+        result = 31 * result + (dateOfBirth != null ? dateOfBirth.hashCode() : 0);
         return result;
     }
 
@@ -105,7 +122,8 @@ public class Student {
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", lesson=" + lesson +
+                ", lessons=" + Arrays.toString(lessons) +
+                ", dateOfBirth=" + DateUtil.dateToString(dateOfBirth) +
                 '}';
     }
 }

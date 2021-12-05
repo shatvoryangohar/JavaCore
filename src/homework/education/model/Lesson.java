@@ -1,4 +1,4 @@
-package homework.education;
+package homework.education.model;
 
 public class Lesson {
 
@@ -7,10 +7,10 @@ public class Lesson {
     private String lecturerName;
     private double price;
 
-    Lesson() {
+    public Lesson() {
     }
 
-    Lesson(String name, double duration, String lecturerName, double price) {
+    public Lesson(String name, double duration, String lecturerName, double price) {
         this.name = name;
         this.duration = duration;
         this.lecturerName = lecturerName;
