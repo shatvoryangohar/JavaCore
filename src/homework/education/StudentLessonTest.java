@@ -2,8 +2,10 @@ package homework.education;
 
 import homework.education.model.Lesson;
 import homework.education.model.Student;
+import homework.education.model.User;
 import homework.education.storage.LessonStorage;
 import homework.education.storage.StudentStorage;
+import homework.education.storage.UserStorage;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -13,12 +15,15 @@ public class StudentLessonTest implements StudentLessonCommands {
     static Scanner scanner = new Scanner(System.in);
     static LessonStorage lessonStorage = new LessonStorage();
     static StudentStorage studentStorage = new StudentStorage();
-
+    static UserStorage userStorage = new UserStorage();
 
     public static void main(String[] args) throws ParseException {
 
+        User user = new User();
+        userStorage.add(new User("poxos", "Poxosyan", "poxos@gmail.com", "gggggg", "Admin"));
         Lesson qimia = new Lesson("qimia", 45, "tjycjtc", 45);
         Lesson matem = new Lesson("matem", 45, "tjycjtc", 45);
+
         lessonStorage.add(qimia);
         lessonStorage.add(matem);
 
@@ -56,11 +61,89 @@ public class StudentLessonTest implements StudentLessonCommands {
                     break;
                 case DELETE_STUDENT_BY_EMAIL:
                     deleteStudentByEmail();
+                    break;
+                case LOGIN:
+                    login();
+                    break;
+                case REGISTER:
+                    register();
+                    break;
+                default:
+                    System.out.println("Invalid command");
             }
 
 
         }
+        while (isFound) {
+    StudentLessonCommands.printUserCommands();
+        String command=scanner.nextLine();
+        switch (command){
+            case EXIT:
+        isFound=false;
+       break;
+            case ADD_LESSON:
+                addLesson();
+                break;
+            case ADD_STUDENT:
+                addStudent();
+                break;
+            case PRINT_STUDENTS:
+                studentStorage.print();
+                break;
+            case PRINT_LESSONS:
+                lessonStorage.print();
+                break;
+            case PRINT_STUDENTS_BY_LESSON:
+                printStudentsByLesson();
+                break;
+            case LOGIN:
+                login();
+                break;
+            case REGISTER:
+                register();
+                break;
+            default:
+                System.out.println("Invalid command");
+        }
 
+
+
+        }
+
+    }
+
+    private static void register() {
+        userStorage.print();
+        System.out.println("Please input user's name");
+        String name = scanner.nextLine();
+        System.out.println("Please input user's surname");
+        String surname = scanner.nextLine();
+        System.out.println("Please input user's email");
+        String email = scanner.nextLine();
+        System.out.println("Please input user's password");
+        String password = scanner.nextLine();
+        User user = new User(name, surname, email, password, "User");
+        userStorage.add(user);
+    }
+
+    private static void login() {
+        userStorage.print();
+        System.out.println("Please input email");
+        String email = scanner.nextLine();
+        System.out.println("Please input password");
+        String password = scanner.nextLine();
+        User user = userStorage.getByEmailAndPassword(email, password);
+        if (user != null) {
+            if (user.getType().equals("User")) {
+                StudentLessonCommands.printUserCommands();
+
+            } else if (user.getType().equals("Admin")) {
+                StudentLessonCommands.printCommands();
+            }
+
+        } else {
+            System.err.println("Invalid email or password");
+        }
 
     }
 
@@ -86,6 +169,7 @@ public class StudentLessonTest implements StudentLessonCommands {
         } else {
             System.out.println("lesson does not exists");
         }
+
     }
 
     private static void printStudentsByLesson() {
