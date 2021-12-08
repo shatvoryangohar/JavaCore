@@ -1,5 +1,6 @@
 package homework.education;
 
+import homework.author.AuthorBookCommands;
 import homework.education.model.Lesson;
 import homework.education.model.Student;
 import homework.education.model.User;
@@ -19,27 +20,19 @@ public class StudentLessonTest implements StudentLessonCommands {
 
     public static void main(String[] args) throws ParseException {
 
-        User user = new User();
-        userStorage.add(new User("poxos", "Poxosyan", "poxos@gmail.com", "gggggg", "Admin"));
-        Lesson qimia = new Lesson("qimia", 45, "tjycjtc", 45);
-        Lesson matem = new Lesson("matem", 45, "tjycjtc", 45);
-
-        lessonStorage.add(qimia);
-        lessonStorage.add(matem);
-
-        Lesson lesson1 = new Lesson("ddddd", 78, "jjjj", 65);
-        Lesson[] lessons = new Lesson[1];
-        lessonStorage.add(lesson1);
-        lessons[0] = lesson1;
-        studentStorage.add(new Student("Poxos", "Poxosyan", 16, "poxos@gmail.com", "093154654", lessons, DateUtil.stringToDate("24/08/2012")));
         boolean isFound = true;
         while (isFound) {
             StudentLessonCommands.printCommands();
             String command = scanner.nextLine();
-
             switch (command) {
                 case EXIT:
                     isFound = false;
+                    break;
+                case REGISTER:
+                    register();
+                    break;
+                case LOGIN:
+                    login();
                     break;
                 case ADD_LESSON:
                     addLesson();
@@ -62,51 +55,42 @@ public class StudentLessonTest implements StudentLessonCommands {
                 case DELETE_STUDENT_BY_EMAIL:
                     deleteStudentByEmail();
                     break;
+                default:
+                    System.out.println("Invalid command");
+            }
+        }
+
+        boolean isRun = true;
+        while (isRun) {
+            StudentLessonCommands.printUserCommands();
+            String command = scanner.nextLine();
+            switch (command) {
+                case EXIT:
+                    isRun = false;
                 case LOGIN:
                     login();
                     break;
                 case REGISTER:
                     register();
                     break;
+                case ADD_LESSON:
+                    addLesson();
+                    break;
+                case ADD_STUDENT:
+                    addStudent();
+                    break;
+                case PRINT_STUDENTS:
+                    studentStorage.print();
+                    break;
+                case PRINT_LESSONS:
+                    lessonStorage.print();
+                    break;
+                case PRINT_STUDENTS_BY_LESSON:
+                    printStudentsByLesson();
+                    break;
                 default:
                     System.out.println("Invalid command");
             }
-
-
-        }
-        while (isFound) {
-    StudentLessonCommands.printUserCommands();
-        String command=scanner.nextLine();
-        switch (command){
-            case EXIT:
-        isFound=false;
-       break;
-            case ADD_LESSON:
-                addLesson();
-                break;
-            case ADD_STUDENT:
-                addStudent();
-                break;
-            case PRINT_STUDENTS:
-                studentStorage.print();
-                break;
-            case PRINT_LESSONS:
-                lessonStorage.print();
-                break;
-            case PRINT_STUDENTS_BY_LESSON:
-                printStudentsByLesson();
-                break;
-            case LOGIN:
-                login();
-                break;
-            case REGISTER:
-                register();
-                break;
-            default:
-                System.out.println("Invalid command");
-        }
-
-
 
         }
 
@@ -136,13 +120,12 @@ public class StudentLessonTest implements StudentLessonCommands {
         if (user != null) {
             if (user.getType().equals("User")) {
                 StudentLessonCommands.printUserCommands();
-
             } else if (user.getType().equals("Admin")) {
                 StudentLessonCommands.printCommands();
-            }
+            } else {
+                System.err.println("Invalid email or password");
 
-        } else {
-            System.err.println("Invalid email or password");
+            }
         }
 
     }
@@ -230,5 +213,6 @@ public class StudentLessonTest implements StudentLessonCommands {
 
     }
 
-
 }
+
+
