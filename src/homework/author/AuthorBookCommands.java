@@ -18,6 +18,8 @@ public interface AuthorBookCommands {
     String DELETE_AUTHOR = "12";
     String DELETE_BY_AUTHOR = "13";
     String DELETE_BOOK = "14";
+    String ADD_TAG_TO_BOOK = "15";
+    String REMOVE_TAG_FROM_BOOK = "16";
 
 
     static void printCommands() {
@@ -37,6 +39,8 @@ public interface AuthorBookCommands {
         System.out.println("Please input " + DELETE_AUTHOR + " for DELETE_AUTHOR");
         System.out.println("Please input " + DELETE_BY_AUTHOR + " for DELETE_BY_AUTHOR");
         System.out.println("Please input " + DELETE_BOOK + " for DELETE BOOK");
+        System.out.println("Please input " + ADD_TAG_TO_BOOK + " for ADD_TAG_TO BOOK");
+        System.out.println("Please input " + REMOVE_TAG_FROM_BOOK + " for REMOVE_TAG_FROM_BOOK");
     }
 
 

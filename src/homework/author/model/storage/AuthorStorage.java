@@ -1,6 +1,9 @@
-package homework.author;
+package homework.author.model.storage;
 
-import static java.lang.System.arraycopy;
+
+
+import homework.author.util.ArrayUtil;
+import homework.author.model.Author;
 
 public class AuthorStorage {
 
@@ -46,17 +49,6 @@ public class AuthorStorage {
     }
 
 
-    public void delete(int index) {
-
-        for (int i = index + 1; i < size; i++) {
-
-            array[i - 1] = array[i];
-
-        }
-        size--;
-
-    }
-
 
     public void print() {
 
@@ -91,10 +83,12 @@ public class AuthorStorage {
         return null;
     }
 
-    public void deleteAuthor(String email) {
+    public void deleteAuthor(Author author) {
         for (int i = 0; i < size; i++) {
-            if (array[i].getEmail().contains(email)) {
-                delete(i);
+            if (array[i].equals(author)) {
+                ArrayUtil.delete(array, i, size);
+                size--;
+                break;
             }
         }
 
