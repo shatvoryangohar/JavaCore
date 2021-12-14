@@ -1,4 +1,4 @@
-package homework.author.model.storage;
+package homework.author.storage;
 
 
 
