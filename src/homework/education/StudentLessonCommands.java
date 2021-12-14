@@ -1,20 +1,28 @@
 package homework.education;
 
 public interface StudentLessonCommands {
+    String EXIT = "0";
+    String ADD_LESSON = "1";
+    String ADD_STUDENT = "2";
+    String PRINT_STUDENTS = "3";
+    String PRINT_LESSONS = "4";
+    String PRINT_STUDENTS_BY_LESSON = "5";
+    String DELETE_LESSONS_BY_NAME = "6";
+    String DELETE_STUDENT_BY_EMAIL = "7";
+//user command
+
     String LOGIN = "1";
     String REGISTER = "2";
-    String EXIT = "0";
-    String ADD_LESSON = "3";
-    String ADD_STUDENT = "4";
-    String PRINT_STUDENTS = "5";
-    String PRINT_LESSONS = "6";
-    String PRINT_STUDENTS_BY_LESSON = "7";
-    String DELETE_LESSONS_BY_NAME = "8";
-    String DELETE_STUDENT_BY_EMAIL = "9";
 
     static void printCommands() {
-        System.out.println("Please input " + LOGIN + " for LOGIN");
-        System.out.println("lease input " + REGISTER + "for REGISTER");
+        System.out.println("Please input " + EXIT + "for EXIT");
+        System.out.println("Please input " + LOGIN + "for LOGIN");
+        System.out.println("Please input " + REGISTER + "for REGISTER");
+
+    }
+
+    static void printAdminCommands() {
+
         System.out.println("Please input " + EXIT + "for EXIT");
         System.out.println("Please input " + ADD_LESSON + " for ADD_LESSON");
         System.out.println("Please input " + ADD_STUDENT + " for ADD_STUDENT");
@@ -26,9 +34,7 @@ public interface StudentLessonCommands {
     }
 
 
-    static void printUserCommands(){
-        System.out.println("Please input " + LOGIN + " for LOGIN");
-        System.out.println("lease input " + REGISTER + "for REGISTER");
+    static void printUserCommands() {
         System.out.println("Please input " + EXIT + "for EXIT");
         System.out.println("Please input " + ADD_LESSON + " for ADD_LESSON");
         System.out.println("Please input " + ADD_STUDENT + " for ADD_STUDENT");

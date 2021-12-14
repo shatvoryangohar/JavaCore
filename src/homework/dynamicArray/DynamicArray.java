@@ -60,7 +60,7 @@ public class DynamicArray {
 
     private void extend() {
         int[] tmp = new int[10];
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < size; i++) {
             tmp[i] = array[i];
         }
 

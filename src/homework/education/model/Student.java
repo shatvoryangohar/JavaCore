@@ -1,6 +1,6 @@
 package homework.education.model;
 
-import homework.education.DateUtil;
+import homework.education.util.DateUtil;
 
 import java.util.Arrays;
 import java.util.Date;
