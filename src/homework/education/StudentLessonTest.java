@@ -20,7 +20,7 @@ public class StudentLessonTest implements StudentLessonCommands {
     static UserStorage userStorage = new UserStorage();
 
     public static void main(String[] args)  {
-        userStorage.add(new User("poos", "poxosyan", "poxos@mail.com", "poxos16", "Admin"));
+
 
 
         boolean isRun = true;
@@ -130,7 +130,7 @@ public class StudentLessonTest implements StudentLessonCommands {
                 user.setEmail(email);
                 user.setPassword(password);
                 user.setType(type.toUpperCase());
-                userStorage.add(user);
+                userStorage.add(type,user);
                 System.out.println("Thank you,user was registered ");
             } else {
                 System.out.println("Invalid type");
